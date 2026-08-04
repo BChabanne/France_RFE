@@ -4,7 +4,7 @@
     Schematron Licensed under European Union Public Licence (EUPL) version 1.4.0
     Réalisé par Quentin Houard et Cyrille Sautereau pour le compte du FNFE-MPE.
 -->
-<!-- Schematron 20260630_BR-FR-CDV-Schematron-CDAR_V1.4.0 - last update 2026 06 30 
+<!-- Schematron 20260630_BR-FR-CDV-Schematron-CDAR_V1.4.0.03 - last update 2026 06 30 - Last fix03 2026 07 31 
     Mode "WARNING" APPLICABLE EN RECEPTION DES LA PUBLICATION ET JUSQU'AU 30 SEPTEMBRE 2026 AU PLUS TARD.
                    APPICALBLE EN EMMISSION DES LA PUBLICATION ET JUSQU'AU 31 AOUT 2026 AU PLUS TARD -->
 
@@ -445,16 +445,16 @@
   </pattern>
   
   
-  <pattern id="BR-FR-CDV-CL-01"> <!-- CYS3 : test différent pour CDV PPF V1.4 : matricule PPF est 0000 ici -->
+  <pattern id="BR-FR-CDV-CL-01"> <!-- CYS3 : test différent pour CDV PPF V1.4 : matricule PPF est 0000 ici V1.4.0 fix Xpath du contrôle était faux pour les autres valeurs que REGULATED --> 
     <title>BR-FR-CDV-CL-01 — Liste fermée de valeurs pour MDT-2</title>
     
     <rule context="rsm:CrossDomainAcknowledgementAndResponse/rsm:ExchangedDocumentContext">
       <let name="TestPPF" value="(count(../rsm:ExchangedDocument/ram:RecipientTradeParty/ram:GlobalID) = 1 and ../rsm:ExchangedDocument/ram:RecipientTradeParty/ram:GlobalID[@schemeID='0238'] = '0000' and ../rsm:ExchangedDocument/ram:RecipientTradeParty/ram:RoleCode = 'DFH')"/>
-      <assert test="(not($TestPPF) and (./ram:BusinessProcessSpecifiedDocumentContextParameter/ram:ID = 'REGULATED' or . = 'NON_REGULATED' or . = 'B2C' or . = 'B2CINT' or . = 'B2BINT' or . = 'OUTOFSCOPE')) or ($TestPPF and (string-length(normalize-space(./ram:BusinessProcessSpecifiedDocumentContextParameter/ram:ID)) &lt;= 3))"
+      <assert test="(not($TestPPF) and (ram:BusinessProcessSpecifiedDocumentContextParameter/ram:ID = ('REGULATED' ,'NON_REGULATED','B2C' ,'B2CINT','B2BINT', 'OUTOFSCOPE'))) or ($TestPPF and (string-length(normalize-space(ram:BusinessProcessSpecifiedDocumentContextParameter/ram:ID)) &lt;= 3))"
         flag="warning"
         id="BR-FR-CDV-CL-01_MDT-2">
         [BR-FR-CDV-CL-01/MDT-2] : La valeur de MDT-2 doit être l'une des suivantes : "REGULATED", "NON_REGULATED", "B2C", "B2CINT", "B2BINT", "OUTOFSCOPE" sauf pour un CDV pour le PPF pourlequel le nombre de caractères DOIT être inférieur à 3. 
-        Valeur actuelle : CDV PPF ? (true) : "<value-of select='$TestPPF'/>" - Valeur MDT-2 : "<value-of select='./ram:BusinessProcessSpecifiedDocumentContextParameter/ram:ID'/>". Veuillez corriger cette valeur si nécessaire.
+        Valeur actuelle : CDV PPF ? (true) : "<value-of select='$TestPPF'/>" - Valeur MDT-2 : "<value-of select='ram:BusinessProcessSpecifiedDocumentContextParameter/ram:ID'/>". Veuillez corriger cette valeur si nécessaire.
       </assert>
     </rule>
     

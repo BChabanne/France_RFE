@@ -1166,10 +1166,10 @@
                     select="(count(../rsm:ExchangedDocument/ram:RecipientTradeParty/ram:GlobalID) = 1 and ../rsm:ExchangedDocument/ram:RecipientTradeParty/ram:GlobalID[@schemeID='0238'] = '0000' and ../rsm:ExchangedDocument/ram:RecipientTradeParty/ram:RoleCode = 'DFH')"/>
       <!--ASSERT -->
       <xsl:choose>
-         <xsl:when test="(not($TestPPF) and (./ram:BusinessProcessSpecifiedDocumentContextParameter/ram:ID = 'REGULATED' or . = 'NON_REGULATED' or . = 'B2C' or . = 'B2CINT' or . = 'B2BINT' or . = 'OUTOFSCOPE')) or ($TestPPF and (string-length(normalize-space(./ram:BusinessProcessSpecifiedDocumentContextParameter/ram:ID)) &lt;= 3))"/>
+         <xsl:when test="(not($TestPPF) and (ram:BusinessProcessSpecifiedDocumentContextParameter/ram:ID = ('REGULATED' ,'NON_REGULATED','B2C' ,'B2CINT','B2BINT', 'OUTOFSCOPE'))) or ($TestPPF and (string-length(normalize-space(ram:BusinessProcessSpecifiedDocumentContextParameter/ram:ID)) &lt;= 3))"/>
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
-                                test="(not($TestPPF) and (./ram:BusinessProcessSpecifiedDocumentContextParameter/ram:ID = 'REGULATED' or . = 'NON_REGULATED' or . = 'B2C' or . = 'B2CINT' or . = 'B2BINT' or . = 'OUTOFSCOPE')) or ($TestPPF and (string-length(normalize-space(./ram:BusinessProcessSpecifiedDocumentContextParameter/ram:ID)) &lt;= 3))">
+                                test="(not($TestPPF) and (ram:BusinessProcessSpecifiedDocumentContextParameter/ram:ID = ('REGULATED' ,'NON_REGULATED','B2C' ,'B2CINT','B2BINT', 'OUTOFSCOPE'))) or ($TestPPF and (string-length(normalize-space(ram:BusinessProcessSpecifiedDocumentContextParameter/ram:ID)) &lt;= 3))">
                <xsl:attribute name="id">BR-FR-CDV-CL-01_MDT-2</xsl:attribute>
                <xsl:attribute name="flag">warning</xsl:attribute>
                <xsl:attribute name="location">
@@ -1180,7 +1180,7 @@
         Valeur actuelle : CDV PPF ? (true) : "<xsl:text/>
                   <xsl:value-of select="$TestPPF"/>
                   <xsl:text/>" - Valeur MDT-2 : "<xsl:text/>
-                  <xsl:value-of select="./ram:BusinessProcessSpecifiedDocumentContextParameter/ram:ID"/>
+                  <xsl:value-of select="ram:BusinessProcessSpecifiedDocumentContextParameter/ram:ID"/>
                   <xsl:text/>". Veuillez corriger cette valeur si nécessaire.
       </svrl:text>
             </svrl:failed-assert>
