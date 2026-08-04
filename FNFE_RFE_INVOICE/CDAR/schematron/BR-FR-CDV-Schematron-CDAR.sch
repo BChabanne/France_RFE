@@ -396,7 +396,7 @@
         flag="fatal" 
         id="BR-FR-CDV-13_MDT-129">
         [BR-FR-CDV-13/MDT-129] : L'identifiant du vendeur émetteur de la facture (en direct ou pour son compte) (MDT-129) est obligatoire,
-        sauf si MDT-105 (ram:ID dans BusinessProcessSpecifiedDocumentContextParameter) est égal à "501".
+        sauf si MDT-105 est égal à "501".
         En cas de présence, une valeur au moins doit correspondre à l'Identifiant légal du VENDEUR tel que présent dans la facture en BT-30.
       </assert>
     </rule>
