@@ -17,4 +17,6 @@ Standard XP_Z12-013 (standard API for last mile to connect Plateformes Agrées),
 
 ## Change list
 - 1.4.0.01 : done 2026 07 10, correct UBL EXTENDED-CTC-FR sch and xslt for BR-FREXT-CO-12, issue #6, see schematron for detail
+- 1.4.0.02 : Following Issue #12 fix UBL extended-ctc-fr schematron, adding SE BY to BR-CL-10. Correct an error message on CII FR-FR-28 (text error was on UBL Xpath instead of CII)
+- 1.4.0.03 : Following different issues #17, #19, #21, #22, #25, corrections + update Factur-x with 1.09.2 version
 
